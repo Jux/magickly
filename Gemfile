@@ -1,15 +1,10 @@
-source 'http://rubygems.org'
+source 'https://rubygems.org'
 
-gem 'sinatra', '~> 1.2', :require => 'sinatra/base'
-gem 'dragonfly', '~> 0.9.14'
-gem 'addressable', '~> 2.2', :require => 'addressable/uri'
+ruby '1.9.3'
 
-gem 'httparty', '~> 0.8'
-gem 'activesupport', '>= 2.0.0', :require => false
+gemspec
 
-group :development do
-  gem 'jeweler', '~> 1.5'
-end
+gem 'rack-cache', :require => 'rack/cache'
 
 group :development, :test do
   gem 'rack-test'

@@ -4,7 +4,6 @@ module Magickly
 
     # Hack: include these modules to get Utils#identify() 
     include Dragonfly::Configurable
-    include Dragonfly::ImageMagick::Utils
 
     attr_reader :image
     attr_accessor :notes
@@ -54,7 +53,7 @@ module Magickly
         # We are the first convert.  We need to get the
         # identity data directly from the source image
         raise "Neither previous nor image set" if @image.nil?
-        @pre_identity = identify @image
+        @pre_identity = @image.analyse(:image_properties)
       else
         @pre_identity = @previous.post_identify
       end

@@ -16,7 +16,7 @@ module Magickly
   class << self
 
     def dragonfly
-      @dragonfly ||= Dragonfly[:magickly].configure_with(:imagemagick)
+      @dragonfly ||= Dragonfly.app(:magickly).configure_with(:imagemagick)
     end
 
     def logger
@@ -71,9 +71,9 @@ module Magickly
     
   end
 
-  dragonfly.configure do |c|
-    c.datastore = Dragonfly::DataStorage::RemoteDataStore.new
-    c.log = logger
+  dragonfly.configure do# |c|
+    datastore Dragonfly::DataStorage::RemoteDataStore.new
+    # c.log = logger
   end
   
 end

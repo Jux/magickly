@@ -35,7 +35,7 @@ module Magickly
       t0 = Time.now
       src = nil
       opts = ActiveSupport::OrderedHash.new
-      path = env['servlet_request'].try(:get_request_uri) || request.path_info
+      path = env["REQUEST_URI"]
       splat = path.sub /^.*?\/q\//, ''
       
       splat.split('/').each_slice(2) do |k, v|

@@ -17,12 +17,12 @@ module Dragonfly
           #raise Forbidden if response.code == 403
           raise DataNotFound
         end
-        
-        content = response.body
-        extra_data = {}
         [
-          content,            # either a File, String or Tempfile
-          extra_data          # Hash with optional keys :meta, :name, :format
+          response.body,            # either a File, String or Tempfile
+          {
+            'name' => File.basename(uid),
+            'format' => File.extname(uid)[1..-1]
+          }          # Hash with optional keys :meta, :name, :format
         ]
       end
 

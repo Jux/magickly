@@ -6,7 +6,7 @@ module Magickly
     def crop_args opts = {}
       width   = opts[:width]
       height  = opts[:height]
-      gravity = Dragonfly::ImageMagick::Processor::GRAVITIES[opts[:gravity]]
+      gravity = Dragonfly::ImageMagick::Processors::Thumb::GRAVITIES[opts[:gravity]]
       x       = "#{opts[:x] || 0}"
       x = '+' + x unless x[/^[+-]/]
       y       = "#{opts[:y] || 0}"

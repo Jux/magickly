@@ -107,11 +107,11 @@ module Magickly
   add_convert_factory :thumb do |c|
     c.convert_args do |geometry, convert|
       case geometry
-      when Dragonfly::ImageMagick::Processor::RESIZE_GEOMETRY
+      when Dragonfly::ImageMagick::Processors::Thumb::RESIZE_GEOMETRY
         "-resize #{geometry}"
-      when Dragonfly::ImageMagick::Processor::CROPPED_RESIZE_GEOMETRY
+      when Dragonfly::ImageMagick::Processors::Thumb::CROPPED_RESIZE_GEOMETRY
         resize_and_crop_args :width => $1, :height => $2, :gravity => $3
-      when Dragonfly::ImageMagick::Processor::CROP_GEOMETRY
+      when Dragonfly::ImageMagick::Processors::Thumb::CROP_GEOMETRY
         crop_args(
                   :width => $1,
                   :height => $2,
@@ -121,7 +121,6 @@ module Magickly
                   )
       when THUMB_FOCUS_GEOMETRY
         identity = convert.pre_identify
-        
         resize_and_crop_with_focus_args(
           container_width: $1.to_i,
           container_height: $2.to_i,
@@ -138,9 +137,9 @@ module Magickly
       identity = convert.pre_identify
       width, height = identity.values_at :width, :height
       case geometry
-      when Dragonfly::ImageMagick::Processor::RESIZE_GEOMETRY
+      when Dragonfly::ImageMagick::Processors::Thumb::RESIZE_GEOMETRY
         identity.merge resized_dimensions(width, height, geometry)
-      when Dragonfly::ImageMagick::Processor::CROPPED_RESIZE_GEOMETRY, Dragonfly::ImageMagick::Processor::CROP_GEOMETRY, THUMB_FOCUS_GEOMETRY
+      when Dragonfly::ImageMagick::Processors::Thumb::CROPPED_RESIZE_GEOMETRY, Dragonfly::ImageMagick::Processors::Thumb::CROP_GEOMETRY, THUMB_FOCUS_GEOMETRY
         identity.merge :width => $1, :height => $2
       else raise ArgumentError, "Didn't recognise the geometry string #{geometry}"
       end

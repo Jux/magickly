@@ -31,7 +31,8 @@ module Magickly
     end
 
     def execute
-      @image.convert current_args, format
+      @image.convert current_args,
+        "format" => format
     end
 
     def format
@@ -53,7 +54,7 @@ module Magickly
         # We are the first convert.  We need to get the
         # identity data directly from the source image
         raise "Neither previous nor image set" if @image.nil?
-        @pre_identity = @image.analyse(:image_properties)
+        @pre_identity = @image.analyse(:image_properties).symbolize_keys
       else
         @pre_identity = @previous.post_identify
       end

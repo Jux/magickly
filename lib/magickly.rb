@@ -37,7 +37,6 @@ module Magickly
     end
     
     def process_image(image, options={})
-
       skipped_options = {}
 
       convert = options.inject(nil) do |prev, (k, v)|

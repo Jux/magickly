@@ -101,7 +101,7 @@ module Magickly
         # display demo page
         
         # get combined list of jobs and processor methods
-        @methods = ( Magickly.dragonfly.job_methods | Magickly.dragonfly.processor_methods )
+        @methods = ( Magickly.dragonfly.job_methods.instance_methods | Magickly.dragonfly.processor_methods )
         @methods.sort!{|m1, m2| m1.to_s <=> m2.to_s }
         erb :index
       end

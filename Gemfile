@@ -1,8 +1,10 @@
 source 'http://rubygems.org'
 
 gem 'sinatra', '~> 1.2', :require => 'sinatra/base'
-gem 'dragonfly', '~> 0.9.5'
+gem 'dragonfly', '~> 1.0.1'
 gem 'addressable', '~> 2.2', :require => 'addressable/uri'
+gem 'thin'
+gem 'unicorn'
 
 gem 'httparty', '~> 0.8'
 gem 'activesupport', '>= 2.0.0', :require => false
@@ -12,7 +14,7 @@ group :development do
 end
 
 group :development, :test do
-  gem 'debugger'
+#  gem 'debugger'
   gem 'rspec', '~> 2.4'
 end
 

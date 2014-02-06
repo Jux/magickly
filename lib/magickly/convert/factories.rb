@@ -106,6 +106,7 @@ module Magickly
   # Adapted from dragonfly
   add_convert_factory :thumb do |c|
     c.convert_args do |geometry, convert|
+      geometry.downcase!
       case geometry
       when Dragonfly::ImageMagick::Processors::Thumb::RESIZE_GEOMETRY
         "-resize #{geometry}"

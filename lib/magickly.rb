@@ -32,7 +32,7 @@ module Magickly
       raise ArgumentError.new("src needed") if src.blank?
       escaped_src = URI.escape(src)
       image = Magickly.dragonfly.fetch(escaped_src)
-      
+
       process_image(image, options)
     end
     
@@ -60,7 +60,7 @@ module Magickly
           else
             image = image.process method, val
           end
-        elsif Magickly.dragonfly.job_methods.include?(method)
+        elsif Magickly.dragonfly.job_methods.method_defined?(method)
           # note: might be an app-defined dragonfly shortcut
           image = image.send(method, val)
         end

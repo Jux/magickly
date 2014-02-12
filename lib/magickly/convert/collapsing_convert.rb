@@ -54,7 +54,12 @@ module Magickly
         # We are the first convert.  We need to get the
         # identity data directly from the source image
         raise "Neither previous nor image set" if @image.nil?
-        @pre_identity = @image.analyse(:image_properties).symbolize_keys
+        analysis_info = @image.analyse(:image_properties)
+        if analysis_info.respond_to?(:symbolize_keys)
+          @pre_identity = analysis_info.symbolize_keys
+        else
+          @pre_identity = Hash[analysis_info.map{ |k,v| [k.to_sym, v] } ]
+        end
       else
         @pre_identity = @previous.post_identify
       end

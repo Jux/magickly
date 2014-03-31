@@ -1,10 +1,11 @@
-@dir == "/home/collinti/workspace/magickly/"
+@dir = "/srv/magickly/"
 
-worker_processes 2
+worker_processes 8
 working_directory @dir
 
-listen "0.0.0.0:3030"
+listen "#{@dir}tmp/socks/unicorn.sock"
 timeout 30
+preload_app = true
 
 pid "#{@dir}tmp/pids/unicorn.pid"
 

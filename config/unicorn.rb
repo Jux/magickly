@@ -1,13 +1,14 @@
 @dir = "/srv/magickly/"
+@tmp_dir = "/srv/tmp"
 
 worker_processes 8
 working_directory @dir
 
-listen "#{@dir}tmp/socks/unicorn.sock"
+listen "#{@tmp_dir}/magickly.sock"
 timeout 30
 preload_app = true
 
-pid "#{@dir}tmp/pids/unicorn.pid"
+pid "#{@tmp_dir}/magickly.pid"
 
-stderr_path "#{@dir}log/unicorn.stderr.log"
-stdout_path "#{@dir}log/unicorn.stdout.log"
+stderr_path "#{@tmp_dir}/magickly.stderr.log"
+stdout_path "#{@tmp_dir}/magickly.stdout.log"
